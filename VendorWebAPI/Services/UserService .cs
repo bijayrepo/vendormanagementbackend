@@ -14,18 +14,28 @@ namespace VendorWebAPI.Services
         }
         public async Task<bool> RegisterUserAsync(RegisterUserDto dto)
         {
-            if (await IsEmailTakenAsync(dto.Email))
+            try
             {
-                return false; // Email already taken
+
+                if (await IsEmailTakenAsync(dto.Email))
+                {
+                    return false; // Email already taken
+                }
+                var user = new Model.User
+                {
+                    UserID = Guid.NewGuid(),
+                    FullName = dto.FullName,
+                    Username = dto.Username,
+                    Email = dto.Email,
+                    Password = dto.Password // Hash the password
+                };
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
             }
-            var user = new Model.User
+            catch (Exception ex)
             {
-                Username = dto.Username,
-                Email = dto.Email,
-                PasswordHash = dto.Password // Hash the password
-            };
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+                return false;
+            }
             return true;
         }
         public async Task<bool> IsEmailTakenAsync(string email)
