@@ -3537,23 +3537,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bijay\\.nuget\\packages\\": {},
+    "C:\\Users\\devadminvm\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Vendor management\\Backend\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
+      "projectUniqueName": "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
       "projectName": "VendorWebAPI",
-      "projectPath": "F:\\Vendor management\\Backend\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
-      "packagesPath": "C:\\Users\\bijay\\.nuget\\packages\\",
-      "outputPath": "F:\\Vendor management\\Backend\\vendormanagementbackend\\VendorWebAPI\\obj\\",
+      "projectPath": "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
+      "packagesPath": "C:\\Users\\devadminvm\\.nuget\\packages\\",
+      "outputPath": "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\bijay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\devadminvm\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -9,12 +9,6 @@ namespace VendorWebAPI.Data
         {
         }
         public DbSet<User> Users { get; set; }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Model.User>().HasKey(u => u.Id);
-        //    modelBuilder.Entity<Model.User>().Property(u => u.Username).IsRequired().HasMaxLength(100);
-        //    modelBuilder.Entity<Model.User>().Property(u => u.Email).IsRequired().HasMaxLength(100);
-        //    modelBuilder.Entity<Model.User>().Property(u => u.PasswordHash).IsRequired().HasMaxLength(256);
-        //}
+        public DbSet<Vendor> Vendors { get; set; }
     }
 }

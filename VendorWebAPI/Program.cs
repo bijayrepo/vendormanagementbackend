@@ -17,6 +17,7 @@ namespace VendorWebAPI
             builder.Services.AddControllers();
             // Register the UserService as a scoped service
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IVendorService, VendorService>();
             //builder.Services.AddScoped<IUserService, UserService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -26,10 +27,9 @@ namespace VendorWebAPI
             builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
                 .AddNegotiate();
 
-            //builder.Services.AddDbContext<AppDbContext>(options =>
-            //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddDbContext<AppDbContext>(opt =>opt.UseInMemoryDatabase("UserDb"));
+            //builder.Services.AddDbContext<AppDbContext>(opt =>opt.UseInMemoryDatabase("UserDb"));
 
             builder.Services.AddAuthorization(options =>
             {

@@ -1,0 +1,15 @@
+﻿CREATE TABLE Vendors (
+    VendorID UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    CompanyName NVARCHAR(100) NOT NULL,
+    ContactName NVARCHAR(100) NOT NULL,
+    ContactEmail NVARCHAR(100) NOT NULL,
+    ContactPhone NVARCHAR(20),
+    Address NVARCHAR(200),
+    City NVARCHAR(50),
+    State NVARCHAR(50),
+    Country NVARCHAR(50),
+    GSTNumber NVARCHAR(20),
+    PANNumber NVARCHAR(20),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    UpdatedAt DATETIME NULL
+);
