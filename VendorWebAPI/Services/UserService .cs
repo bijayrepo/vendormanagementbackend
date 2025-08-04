@@ -23,6 +23,7 @@ namespace VendorWebAPI.Services
                 }
                 var user = new Model.User
                 {
+                    VendorID = dto.VendorID,
                     UserID = Guid.NewGuid(),
                     FullName = dto.FullName,
                     Username = dto.Username,

@@ -20,15 +20,7 @@ namespace VendorWebAPI.Services
             try
             {
 
-                var user = await _userService.RegisterUserAsync(
-                    new RegisterUserDto
-                    {
-                        UserID= Guid.NewGuid(),
-                        FullName = vendor.ContactName,
-                        Username = vendor.CompanyName,
-                        Email = vendor.ContactEmail,
-                        Password = $"VDR-{DateTime.UtcNow:yyyyMMddHHmmss}" // Assuming you have a password field in Vendor
-                    });
+             
                 new VendorRegistrationDto
                 {
                     VendorID = vendor.VendorID,
@@ -46,7 +38,18 @@ namespace VendorWebAPI.Services
                 };
                 if (vendor == null) return false;
                 await _context.Vendors.AddAsync(vendor);
-                return await _context.SaveChangesAsync() > 0;
+                await _context.SaveChangesAsync();
+                var user = await _userService.RegisterUserAsync(
+                 new RegisterUserDto
+                 {
+                     VendorID = vendor.VendorID,
+                     UserID = Guid.NewGuid(),
+                     FullName = vendor.ContactName,
+                     Username = vendor.CompanyName,
+                     Email = vendor.ContactEmail,
+                     Password = $"VDR-{DateTime.UtcNow:yyyyMMddHHmmss}" // Assuming you have a password field in Vendor
+                 });
+                return true;
             }
             catch (Exception ex)
             {
