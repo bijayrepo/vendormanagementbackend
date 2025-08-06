@@ -21,7 +21,7 @@ namespace VendorWebAPI
             //builder.Services.AddScoped<IUserService, UserService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            //builder.Services.AddSwaggerGen();
 
 
             builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
@@ -31,27 +31,35 @@ namespace VendorWebAPI
 
             //builder.Services.AddDbContext<AppDbContext>(opt =>opt.UseInMemoryDatabase("UserDb"));
 
-            builder.Services.AddAuthorization(options =>
-            {
-                // By default, all incoming requests will be authorized according to the default policy.
-                options.FallbackPolicy = options.DefaultPolicy;
-            });
-           
+            //builder.Services.AddAuthorization(options =>
+            //{
+            //    // By default, all incoming requests will be authorized according to the default policy.
+            //    options.FallbackPolicy = options.DefaultPolicy;
+            //});
+            //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme).AddNegotiate();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //if (app.Environment.IsDevelopment())
+            //{
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI();
+            //}
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
 
             app.MapControllers();
+            // Log all endpoints on startup
+            var endpointDataSource = app.Services.GetRequiredService<Microsoft.AspNetCore.Routing.EndpointDataSource>();
+            foreach (var endpoint in endpointDataSource.Endpoints)
+            {
+                Console.WriteLine($"[ENDPOINT] {endpoint.DisplayName}");
+            }
+
 
             app.Run();
         }

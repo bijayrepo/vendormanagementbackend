@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VendorWebAPI.DTOs;
 using VendorWebAPI.Interfaces;
@@ -16,6 +17,7 @@ namespace VendorWebAPI.Controllers
             _vendorService = vendorService;
         }
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] Vendor dto)
         {
             var vendor = await _vendorService.RegisterVendorAsync(dto);
