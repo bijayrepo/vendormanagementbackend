@@ -1,0 +1,92 @@
+﻿@* @page
+@model UserManagement.Pages.Shared._AdminLayoutModel
+@{
+}
+ *@
+
+
+@* _AdminLayout.cshtml *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Next Data Cloud</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding-top: 1rem;
+            background-color: #f8f9fa;
+        }
+
+            .sidebar .nav-link {
+                color: #333;
+                margin-bottom: 0.5rem;
+            }
+
+                .sidebar .nav-link.active {
+                    font-weight: bold;
+                    color: #0d6efd;
+                }
+
+        main {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Next Data Cloud</h4>
+            <partial name="_LoginPartial" /> @* logout/profile links *@
+        </div>
+    </header>
+
+    <!-- Main layout -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Dashboard" ? "active" : "")" asp-page="/Index">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Profile" ? "active" : "")" asp-page="/Account/Profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Account/Settings">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Reports/Index">Reports</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Page content -->
+            <main class="col-md-10">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        &copy; 2025 Next Data Cloud
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

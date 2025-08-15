@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Ordermanagement.Data;
 namespace Ordermanagement
 {
     public class Program
@@ -5,6 +8,8 @@ namespace Ordermanagement
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<OrdermanagementContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("OrdermanagementContext") ?? throw new InvalidOperationException("Connection string 'OrdermanagementContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
