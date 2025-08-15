@@ -13,6 +13,27 @@ namespace VendorWebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            //builder.Services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowAngular",
+            //        policy =>
+            //        {
+            //            policy.WithOrigins("http://localhost:4200")
+            //                  .AllowAnyHeader()
+            //                  .AllowAnyMethod();
+            //        });
+            //});
+            var allowedOrigins = builder.Configuration.GetSection("AllowedCorsOrigins").Get<string>();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowConfiguredOrigins", policy =>
+                {
+                    policy.WithOrigins(allowedOrigins)
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
 
             builder.Services.AddControllers();
             // Register the UserService as a scoped service
@@ -24,13 +45,15 @@ namespace VendorWebAPI
             //builder.Services.AddSwaggerGen();
 
 
-            builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-                .AddNegotiate();
+
+            //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+            //    .AddNegotiate();
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             //builder.Services.AddDbContext<AppDbContext>(opt =>opt.UseInMemoryDatabase("UserDb"));
 
+          
             //builder.Services.AddAuthorization(options =>
             //{
             //    // By default, all incoming requests will be authorized according to the default policy.
@@ -39,8 +62,9 @@ namespace VendorWebAPI
             //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme).AddNegotiate();
 
             var app = builder.Build();
+            app.UseCors("AllowConfiguredOrigins");
 
-            // Configure the HTTP request pipeline.
+            //Configure the HTTP request pipeline.
             //if (app.Environment.IsDevelopment())
             //{
             //    app.UseSwagger();
@@ -49,7 +73,7 @@ namespace VendorWebAPI
 
             //app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
 
             app.MapControllers();

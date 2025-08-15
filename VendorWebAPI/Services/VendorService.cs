@@ -10,6 +10,7 @@ namespace VendorWebAPI.Services
     {
        private readonly AppDbContext _context;
         private readonly IUserService _userService;
+        private readonly ILogger<VendorService> _logger;
         public VendorService(AppDbContext context,IUserService userService)
         {
             _context = context;
@@ -53,8 +54,7 @@ namespace VendorWebAPI.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error registering vendor: {ex.Message}");
-                Console.WriteLine($"Error registering vendor: {ex.StackTrace}");
+                _logger.LogError(ex, "Error registering vendor: {VendorId}", vendor.ContactEmail);
                 // Log the exception (ex) here if needed
                 return false;
             }
