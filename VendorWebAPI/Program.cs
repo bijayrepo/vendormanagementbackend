@@ -44,8 +44,6 @@ namespace VendorWebAPI
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
 
-
-
             //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
             //    .AddNegotiate();
 
