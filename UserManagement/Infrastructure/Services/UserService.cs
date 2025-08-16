@@ -13,33 +13,20 @@ namespace UserManagement.Infrastructure.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync() =>
-                await _context.Users.ToListAsync();
-
-        public async Task<User?> GetUserByIdAsync(Guid userId) =>
-            await _context.Users.FindAsync(userId);
-
-        public async Task CreateUserAsync(User user)
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        public async Task UpdateUserAsync(User user)
+        public async Task<User?> GetUserByIdAsync(Guid id)
         {
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
+            return await _context.Users.FindAsync(id);
         }
 
-        public async Task DeleteUserAsync(Guid userId)
+        public async Task<User?> LoginAsync(string username, string password)
         {
-            var user = await _context.Users.FindAsync(userId);
-            if (user != null)
-            {
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
-            }
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
         }
-
     }
 }

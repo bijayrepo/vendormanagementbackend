@@ -63,11 +63,11 @@ namespace VendorWebAPI.Services
         {
             return await _context.Vendors.FindAsync(vendorId);
         }
-        public async Task<IEnumerable<Model.Vendor>> GetAllVendorsAsync()
+        public async Task<IEnumerable<Vendor>> GetAllVendorsAsync()
         {
             return await _context.Vendors.ToListAsync();
         }
-        public async Task<bool> UpdateVendorAsync(Model.Vendor vendor)
+        public async Task<bool> UpdateVendorAsync(Vendor vendor)
         {
             if (vendor == null) return false;
             _context.Vendors.Update(vendor);

@@ -1,14 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
 using UserManagement.Core.Entities;
+using UserManagement.Core.Interfaces;
+using UserManagement.Infrastructure.Data;
+using UserManagement.Infrastructure.Services;
 
 namespace UserManagement.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly ApplicationDbContext _context;
+        private readonly IUserService _IUserService;
+        public LoginModel(ApplicationDbContext context,IUserService iuserService)
+        {
+            _context = context;
+            _IUserService = iuserService ?? throw new ArgumentNullException(nameof(_IUserService));
+        }
         [BindProperty]
-        public LoginInputModel Input { get; set; } = new();
+        public User Input { get; set; } = new();
 
         public string ErrorMessage { get; set; }=string.Empty;
         public void OnGet()
@@ -20,22 +32,32 @@ namespace UserManagement.Pages.Account
             {
                 return Page();
             }
+            IEnumerable<User> temp= _IUserService.GetAllUsersAsync().Result;
 
-            // Simple hardcoded check (replace with real authentication logic)
-            if (Input.Username == "admin" && Input.Password == "password123")
+           // var user= _IUserService.GetUserByIdAsync(Input.Username).Result;
+
+            var user = _IUserService.LoginAsync(Input.Username, Input.Password).Result;
+            if (string.IsNullOrEmpty(Input.Username) || string.IsNullOrEmpty(Input.Password))
             {
-                // Redirect to home on success
-                return RedirectToPage("/Index");
+                ErrorMessage = "Username and password are required.";
+                return Page();
             }
 
-            ErrorMessage = "Invalid username or password.";
-            return Page();
+            //var user = _context.Users
+            //    .FirstOrDefaultAsync(u => u.Username == Input.Username && u.Password == Input.Password);
+
+            if (user == null)
+            {
+                ErrorMessage = "Invalid username or password.";
+                return Page();
+            }
+
+            HttpContext.Session.SetString("UserId",Convert.ToString(user.UserID));
+            return RedirectToPage("/Profile/Index");
+
 
         }
-        public IActionResult OnPostLogin()
-        {
-            return RedirectToPage("/");
-        }
+       
         public IActionResult OnPostRegister()
         {
             
@@ -46,13 +68,5 @@ namespace UserManagement.Pages.Account
         {
             return RedirectToPage("/Account/ForgotPassword");
         }
-    }
-    public class LoginInputModel
-    {
-        [Required(ErrorMessage = "Username is required")]
-        public string Username { get; set; }=string.Empty;
-
-        [Required(ErrorMessage = "Password is required")]
-        public string Password { get; set; }=string.Empty;
     }
 }

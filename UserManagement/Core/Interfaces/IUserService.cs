@@ -6,10 +6,8 @@ namespace UserManagement.Core.Interfaces
     {
 
         Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User?> GetUserByIdAsync(Guid userId);
-        Task CreateUserAsync(User user);
-        Task UpdateUserAsync(User user);
-        Task DeleteUserAsync(Guid userId);
+        Task<User?> GetUserByIdAsync(Guid id);
+        Task<User?> LoginAsync(string username, string password);
 
     }
 }

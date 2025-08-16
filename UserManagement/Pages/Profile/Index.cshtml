@@ -1,0 +1,109 @@
+﻿@page
+@model UserManagement.Pages.Profile.IndexModel
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <!-- Header with background gradient -->
+        <div class="bg-primary text-white text-center p-4">
+            <div class="text-center mb-4 d-flex flex-column flex-md-row justify-content-center gap-3">
+                <!-- Profile Picture -->
+                <div class="position-relative">
+                    <img src="@Model.Input.ProfilePictureUrl ?? " ~ /logo/image-logo.png""
+                         alt="Profile Picture"
+                         class="rounded-3 shadow-sm"
+                         style="width: 220px; height: 160px; object-fit: cover;" />
+
+                    <label for="profilePicUpload"
+                           class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle p-2 shadow"
+                           style="cursor:pointer; font-size: 16px;">
+                        <i class="bi bi-camera"></i>
+                    </label>
+                    <input type="file" id="profilePicUpload" class="d-none" />
+                    <div class="mt-2 text-center fw-semibold">Profile Picture</div>
+                </div>
+
+                <!-- Cover or Secondary Picture -->
+                <div class="position-relative">
+                    <img src="@Model.Input.ProfilePictureFileName ?? " ~ /logo/cover-placeholder.png""
+                         alt="Cover Picture"
+                         class="rounded-3 shadow-sm"
+                         style="width: 220px; height: 160px; object-fit: cover;" />
+
+                    <label for="secondPicUpload"
+                           class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle p-2 shadow"
+                           style="cursor:pointer; font-size: 16px;">
+                        <i class="bi bi-camera"></i>
+                    </label>
+                    <input type="file" id="secondPicUpload" class="d-none" />
+                    <div class="mt-2 text-center fw-semibold">Cover Picture</div>
+                </div>
+            </div>
+
+
+            <h3 class="fw-bold mb-1">@Model.Input.Username ?? "User Profile"</h3>
+            <span class="badge bg-light text-primary fw-semibold">
+                @Model.Input.UserRole ?? "User"
+            </span>
+        </div>
+
+        <div class="card-body p-4">
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert alert-success text-center">@Model.Message</div>
+            }
+
+            <form method="post" novalidate>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Vendor ID</label>
+                        <input asp-for="Input.VendorID" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">User ID</label>
+                        <input asp-for="Input.UserID" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Username</label>
+                        <input asp-for="Input.Username" class="form-control" readonly />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Full Name</label>
+                        <input asp-for="Input.FullName" class="form-control" placeholder="Enter full name" />
+                        <span asp-validation-for="Input.FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Email</label>
+                        <input asp-for="Input.Email" class="form-control" placeholder="Enter email" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Password</label>
+                        <input type="password" value="********" class="form-control" readonly />
+                        <div class="form-text">Use the button below to change your password.</div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row gap-3 mt-4">
+                    <button type="submit" class="btn btn-primary fw-semibold flex-fill shadow-sm">
+                        Update Profile
+                    </button>
+                    <a asp-page="/Account/ChangePassword" class="btn btn-outline-primary fw-semibold flex-fill shadow-sm">
+                        Change Password
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
