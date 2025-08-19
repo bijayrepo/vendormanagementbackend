@@ -7,20 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\DTOs\" />
-    <Folder Include="Application\Mappers\" />
-    <Folder Include="Application\Validators\" />
-    <Folder Include="Application\ViewModels\" />
-    <Folder Include="Common\Extensions\" />
-    <Folder Include="Common\Helpers\" />
     <Folder Include="Core\Specifications\" />
     <Folder Include="Infrastructure\Repositories\" />
-    <Folder Include="Pages\UserAdmin\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
   </ItemGroup>
 

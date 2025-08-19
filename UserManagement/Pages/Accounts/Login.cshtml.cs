@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using UserManagement.Core.Entities;
 using UserManagement.Core.Interfaces;
 using UserManagement.Infrastructure.Data;
@@ -51,8 +54,21 @@ namespace UserManagement.Pages.Account
                 ErrorMessage = "Invalid username or password.";
                 return Page();
             }
+            else
+            {
+                var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, Convert.ToString(Input.UserID)),
+                new Claim("UserId", Convert.ToString(Input.UserID))
+            };
 
-            HttpContext.Session.SetString("UserId",Convert.ToString(user.UserID));
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            }
+
+            //HttpContext.Session.SetString("UserId",Convert.ToString(user.UserID));
             return RedirectToPage("/Profile/Index");
 
 
