@@ -10,6 +10,7 @@ namespace AdminControl.Infrastructure.Data
             : base(options) { }
 
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Vendor> Vendors { get; set; } = null!;
 
     }
 }

@@ -8,6 +8,7 @@ namespace AdminControl.Core.Interfaces
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User?> GetUserByIdAsync(Guid id);
         Task<User?> LoginAsync(string username, string password);
+        Task<User?> UpdateUserAsync(User user);
 
     }
 }
