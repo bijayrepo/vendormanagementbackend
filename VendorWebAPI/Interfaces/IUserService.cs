@@ -6,5 +6,7 @@ namespace VendorWebAPI.Interfaces
     {
         Task<bool> RegisterUserAsync(RegisterUserDto dto);
         Task<bool> IsEmailTakenAsync(string email);
+        //Task<bool> UpdateUserAsync(RegisterUserDto dto);
     }
+   
 }
