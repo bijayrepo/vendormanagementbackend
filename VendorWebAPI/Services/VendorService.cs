@@ -8,7 +8,7 @@ namespace VendorWebAPI.Services
 {
     public class VendorService: IVendorService
     {
-       private readonly AppDbContext _context;
+        private readonly AppDbContext _context;
         private readonly IUserService _userService;
         private readonly ILogger<VendorService> _logger;
         public VendorService(AppDbContext context,IUserService userService)

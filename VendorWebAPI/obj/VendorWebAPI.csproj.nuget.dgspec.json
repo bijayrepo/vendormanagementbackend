@@ -66,9 +66,29 @@
               "target": "Package",
               "version": "[9.0.7, )"
             },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.22.1, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "NLog.Extensions.AzureBlobStorage": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using VendorWebAPI.Data;
 using VendorWebAPI.Interfaces;
 using VendorWebAPI.Services;
-using Microsoft.EntityFrameworkCore;
 
 namespace VendorWebAPI
 {
@@ -36,16 +37,28 @@ namespace VendorWebAPI
             });
 
             builder.Services.AddControllers();
+            builder.Services.AddMemoryCache();
             // Register the UserService as a scoped service
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IVendorService, VendorService>();
-            //builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IAuthService, AuthService>(provider =>
+            {
+                var context = provider.GetRequiredService<AppDbContext>();
+                var jwtSecret = builder.Configuration.GetValue<string>("JwtSettings:SecretKey") ?? "Demo";
+                return new AuthService(context, jwtSecret);
+            });
+            builder.Services.AddTransient<IUserAuthService, AuthService>(provider =>
+            {
+                var context = provider.GetRequiredService<AppDbContext>();
+                var jwtSecret = builder.Configuration.GetValue<string>("JwtSettings:SecretKey") ?? "Demo";
+                return new AuthService(context, jwtSecret);
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen();
 
-            //builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-            //    .AddNegotiate();
+            builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+                .AddNegotiate();
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -63,15 +76,32 @@ namespace VendorWebAPI
             app.UseCors("AllowConfiguredOrigins");
 
             //Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             //app.UseHttpsRedirection();
 
             //app.UseAuthorization();
+            //
+
+
+
+            // Log each incoming request URL
+            app.Use(async (context, next) =>
+            {
+                var request = context.Request;
+                var url = $"{request.Scheme}://{request.Host}{request.Path}{request.QueryString}";
+                Console.WriteLine($"[REQUEST] {request.Method} {url}");
+                await next();
+            });
+
+
+
+            ///
+
 
 
             app.MapControllers();
