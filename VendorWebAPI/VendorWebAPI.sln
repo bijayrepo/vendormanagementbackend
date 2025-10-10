@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement", "..\UserMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminControl", "..\AdminControl\AdminControl.csproj", "{5A56751D-9DCE-41B0-B938-6BA03B96F4FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp", "..\ClientApp\ClientApp.csproj", "{42C2DF52-F02D-414C-BA69-599031970A9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5A56751D-9DCE-41B0-B938-6BA03B96F4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A56751D-9DCE-41B0-B938-6BA03B96F4FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A56751D-9DCE-41B0-B938-6BA03B96F4FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C2DF52-F02D-414C-BA69-599031970A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C2DF52-F02D-414C-BA69-599031970A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C2DF52-F02D-414C-BA69-599031970A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C2DF52-F02D-414C-BA69-599031970A9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
