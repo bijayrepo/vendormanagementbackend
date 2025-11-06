@@ -104,7 +104,7 @@ namespace VendorWebAPI
             ///
 
 
-
+            //app.UseLoggingMiddleware();
             app.MapControllers();
             // Log all endpoints on startup
             var endpointDataSource = app.Services.GetRequiredService<Microsoft.AspNetCore.Routing.EndpointDataSource>();
