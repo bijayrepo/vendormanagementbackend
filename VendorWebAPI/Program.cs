@@ -60,7 +60,8 @@ namespace VendorWebAPI
             builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
                 .AddNegotiate();
 
-            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("VendorDBConnection")));
+            builder.Services.AddDbContext<ServicesDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ServicesDBConnection")));
 
             //builder.Services.AddDbContext<AppDbContext>(opt =>opt.UseInMemoryDatabase("UserDb"));
 
