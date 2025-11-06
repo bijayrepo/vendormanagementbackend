@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj": {}
+    "F:\\Live Projects\\Vendor\\Backend\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj": {
+    "F:\\Live Projects\\Vendor\\Backend\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
+        "projectUniqueName": "F:\\Live Projects\\Vendor\\Backend\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
         "projectName": "VendorWebAPI",
-        "projectPath": "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
-        "packagesPath": "C:\\Users\\devadminvm\\.nuget\\packages\\",
-        "outputPath": "C:\\Project\\VendorPortal\\BackEnd\\vendormanagementbackend\\VendorWebAPI\\obj\\",
+        "projectPath": "F:\\Live Projects\\Vendor\\Backend\\vendormanagementbackend\\VendorWebAPI\\VendorWebAPI.csproj",
+        "packagesPath": "C:\\Users\\bijay\\.nuget\\packages\\",
+        "outputPath": "F:\\Live Projects\\Vendor\\Backend\\vendormanagementbackend\\VendorWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\devadminvm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bijay\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -114,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
