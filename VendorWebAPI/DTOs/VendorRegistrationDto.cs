@@ -1,4 +1,6 @@
-﻿namespace VendorWebAPI.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace VendorWebAPI.DTOs
 {
     public class VendorRegistrationDto
     {
@@ -27,6 +29,8 @@
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public DateTime? UpdatedAt { get; set; }
+
+        //public ICollection<User> Users { get; set; } = new List<User>();
 
     }
 }

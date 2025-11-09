@@ -5,10 +5,11 @@ using VendorWebAPI.DTOs;
 using VendorWebAPI.Interfaces;
 using VendorWebAPI.Model;
 
+
 namespace VendorWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class VendorsController : Controller
     {
         private readonly IVendorService _vendorService;
