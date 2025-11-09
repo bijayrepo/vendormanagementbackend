@@ -4,6 +4,7 @@ using Microsoft.Extensions.Caching.Memory;
 using VendorWebAPI.Data;
 using VendorWebAPI.Interfaces;
 using VendorWebAPI.Services;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace VendorWebAPI
 {
@@ -44,6 +45,7 @@ namespace VendorWebAPI
             builder.Services.AddScoped<IAuthService, AuthService>(provider =>
             {
                 var context = provider.GetRequiredService<AppDbContext>();
+                //var ServiceContext = provider.GetRequiredService<ServicesDbContext>();
                 var jwtSecret = builder.Configuration.GetValue<string>("JwtSettings:SecretKey") ?? "Demo";
                 return new AuthService(context, jwtSecret);
             });
@@ -60,12 +62,15 @@ namespace VendorWebAPI
             builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
                 .AddNegotiate();
 
+            //dotnet tool install --global dotnet-ef
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("VendorDBConnection")));
+            //dotnet ef migrations add InitialCreate --Context AppDBContext --OutputDir Migrations\VendorDBConnection
             builder.Services.AddDbContext<ServicesDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ServicesDBConnection")));
-
+            // dotnet ef migrations add InitialCreate --context ServicesDbContext --output-dir Migrations\ServicesDBConnection
+            //dotnet ef database update --context ServicesDbContext
             //builder.Services.AddDbContext<AppDbContext>(opt =>opt.UseInMemoryDatabase("UserDb"));
 
-          
+
             //builder.Services.AddAuthorization(options =>
             //{
             //    // By default, all incoming requests will be authorized according to the default policy.
