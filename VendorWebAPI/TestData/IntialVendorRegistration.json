@@ -1,0 +1,28 @@
+{
+  "vendorID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "companyName": "TechVision Pvt Ltd",
+  "contactName": "Bijay Kumar",
+  "contactEmail": "bijay@example.com",
+  "contactPhone": "+91-9876543210",
+  "address": "123 Main Street",
+  "city": "Noida",
+  "state": "Uttar Pradesh",
+  "country": "India",
+  "gstNumber": "29ABCDE1234F1Z5",
+  "panNumber": "ABCDE1234F",
+  "createdAt": "2025-11-10T16:08:24.073Z",
+  "updatedAt": "2025-11-10T16:08:24.073Z",
+  "users": [
+    {
+      "userID": "4aa85f64-5717-4562-b3fc-2c963f66afa6",
+      "vendorID": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "username": "bijay_admin",
+      "fullName": "Bijay Kumar",
+      "email": "admin@techvision.com",
+      "password": "Admin@123",
+      "userRole": "Admin",
+      "profilePictureUrl": "https://example.com/images/bijay.png",
+      "profilePictureFileName": "bijay.png"
+    }
+  ]
+}

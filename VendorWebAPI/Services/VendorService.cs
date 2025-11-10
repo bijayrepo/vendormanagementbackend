@@ -20,8 +20,6 @@ namespace VendorWebAPI.Services
         {
             try
             {
-
-             
                 new VendorRegistrationDto
                 {
                     VendorID = vendor.VendorID,

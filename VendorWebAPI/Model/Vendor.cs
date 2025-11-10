@@ -6,29 +6,29 @@ namespace VendorWebAPI.Model
     {
         [Key]
         public Guid VendorID { get; set; } = Guid.NewGuid();
-        [Required]
+        //[Required]
         public string CompanyName { get; set; }=string.Empty;
-        [Required]
+        //[Required]
         public string ContactName { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string ContactEmail { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string ContactPhone { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string Address { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string City { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string State { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string Country { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string GSTNumber { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public string PANNumber { get; set; } = string.Empty;
-        [Required]
+        //[Required]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        [Required]
+        //[Required]
         public DateTime? UpdatedAt { get; set; }
 
         public ICollection<User> Users { get; set; } = new List<User>();
