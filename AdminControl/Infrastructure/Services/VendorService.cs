@@ -56,7 +56,7 @@ namespace AdminControl.Infrastructure.Services
         public async Task<IEnumerable<Vendor>> SearchVendorsAsync(string searchTerm)
         {
             return await _context.Vendors
-                .Where(v => v.Name.Contains(searchTerm) || v.Description.Contains(searchTerm))
+                .Where(v => v.CompanyName.Contains(searchTerm) || v.ContactEmail.Contains(searchTerm))
                 .ToListAsync();
         }
     }
